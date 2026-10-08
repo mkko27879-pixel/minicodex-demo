@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 虚拟环境
+.venv/
+
+# 测试与缓存
+.pytest_cache/
+.coverage
+
+# IDE
+.idea/
+.vscode/
+
+# 环境变量（含密钥，禁止入库）
+.env
+
+# 运行期数据（mem0 历史库等）
+data/
+
+minicodex学习笔记.md/

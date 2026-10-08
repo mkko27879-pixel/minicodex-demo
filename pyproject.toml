@@ -1,0 +1,38 @@
+[project]
+name = "study"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "datetime>=6.0",
+    "fastapi>=0.141.1",
+    "langchain>=1.4.2",
+    "langchain-deepseek>=1.1.1",
+    "langchain-openai>=1.6.6",
+    "langgraph>=1.2.12",
+    "langgraph-checkpoint-postgres>=3.1.2",
+    "mem0ai>=2.2.1",
+    "psycopg[binary,pool]>=3.3.6",
+    "pydantic>=2.13.5",
+    "pydantic-settings>=2.15.0",
+    "python-dotenv>=1.2.3",
+    "sse-starlette>=3.4.11",
+    "uvicorn>=0.54.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+# 会话级单事件循环：agent 的 httpx 连接与数据库连接池都绑在同一个 loop 上，
+# 否则跨测试的 loop 切换会在清理时触发 "Event loop is closed"。
+asyncio_default_test_loop_scope = "session"
+asyncio_default_fixture_loop_scope = "session"
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true

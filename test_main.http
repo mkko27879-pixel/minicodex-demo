@@ -1,0 +1,41 @@
+# Test your FastAPI endpoints
+
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/hello/User
+Accept: application/json
+
+###
+
+# 非流式对话：只发本轮输入，历史由服务端按 thread_id 维护
+POST http://127.0.0.1:8000/api/chat/chat
+Content-Type: application/json
+
+{
+  "message": "现在几点了？",
+  "thread_id": "test_thread_1",
+  "user_id": "test_user_1"
+}
+
+###
+
+# 流式对话（SSE）
+POST http://127.0.0.1:8000/api/chat/chat/stream
+Content-Type: application/json
+
+{
+  "message": "现在几点了？",
+  "thread_id": "test_thread_1",
+  "user_id": "test_user_1"
+}
+
+###
+
+# 查询历史
+GET http://127.0.0.1:8000/api/chat/messages?thread_id=test_thread_1
+Accept: application/json
+
+###
